@@ -16,27 +16,11 @@ module.exports = class {
 
         this.client.wait(2000);
 
-        try {
-            guild.createChannel("PALADIUM BOT", {
-                type:"category"
-            }).then(cat => {
-                cat.overwritePermissions(guild.roles.find(r => r.name === "@everyone"), {
-                    "CONNECT":false,
-                    "VIEW_CHANNEL":true
-                }).then(async (cat) => {
-                    await guild.createChannel("【🛡】Statut : Patientez...", {
-                        type:"voice",
-                        parent:cat
-                    });
-                    await guild.createChannel("【👥】Joueurs : Patientez...", {
-                        type:"voice",
-                        parent:cat
-                    });
-                });
-            });
-        } catch(e){
-            return;
-        }
+        await this.client.functions.createStatsChannels(this.client, guild);
+
+        this.client.wait(5000);
+
+        await this.client.functions.updateStats(this.client, guild.id);
 
     }
 };
