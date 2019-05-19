@@ -37,5 +37,7 @@ module.exports = class {
             else i = 0;
         }, 20000);
 
+        setInterval(client.functions.updateStats, 300000, client);
+
     }
 };
