@@ -64,6 +64,12 @@ module.exports = class {
             return message.channel.send(this.client.emotes.error+" | Seul le fondateur du bot peut effectuer cette commande !");
         }
 
+        var logEmbed = new Discord.RichEmbed().setAuthor(message.author.tag, message.author.displayAvatarURL).setDescription(message.author.username+" vient d'effectuer la commande "+cmd.help.name+" !");
+        var logs = this.client.channels.get(this.client.config.logs);
+        if(logs){
+            logs.send(logEmbed);
+        }
+
         // If the command exists, **AND** the user has permission, run it.
         cmd.run(message, args, {
             color: this.client.config.color
