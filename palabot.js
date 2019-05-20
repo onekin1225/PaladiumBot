@@ -7,25 +7,30 @@ klaw = require("klaw"),
 path = require("path"),
 readdir = promisify(require("fs").readdir),
 quickdb = require("quick.db");
-quickdb.init("./palabot.sqlite");
+quickdb.init("./data/palabot.sqlite");
 
 // Creates new class
 class PalaBot extends Client {
 
     constructor (options) {
         super(options);
-        this.config = require("./config.js"); // Load the config file
+        this.config = require("./data/config.js"); // Load the config file
         this.commands = new Collection(); // Creates new commands collection
         this.aliases = new Collection(); // Creates new command aliases collection
         this.wait = require("util").promisify(setTimeout); // client.wait(1000) - Wait 1 second
         this.functions = require("./utils/functions.js"); // Load the functions file
         this.logger = require("./utils/logger.js");
         this.databases = [ // Create tables (quick.db)
-            new quickdb.table("serversdata")
+            new quickdb.table("serversdata"),
+            new quickdb.table("cooldows")
         ],
         this.emotes = {
             error:"<:error:579712151107928117>",
-            success:"<:success:579712239209152517>"
+            success:"<:success:579712239209152517>",
+            loading:"<a:loading:579700664989646848>",
+            on:"<:statusOn:579663035770339328>",
+            off:"<:statusOff:579663918931378176>",
+            player:"<:player:579662782945820680>"
         }
     }
 

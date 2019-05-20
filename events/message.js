@@ -64,6 +64,14 @@ module.exports = class {
             return message.channel.send(this.client.emotes.error+" | Seul le fondateur du bot peut effectuer cette commande !");
         }
 
+        var hasToWait = false;
+        var uData = this.client.databases[0].get(message.author.id+cmd.help.name);
+        if(uData && (uData > Date.now())){
+            return message.channel.send(this.client.emotes.error+" | Vous devez attendre encore **"+Math.round((uData - Date.now())/1000)+"** secondes avant de pouvoir de nouveau effectuer cette commande !");
+        } else {
+            this.client.databases[0].set(message.author.id+cmd.help.name, Date.now()+cmd.conf.cooldown);
+        }
+
         var logEmbed = new Discord.RichEmbed().setAuthor(message.author.tag, message.author.displayAvatarURL).setDescription(message.author.username+" vient d'effectuer la commande "+cmd.help.name+" !");
         var logs = this.client.channels.get(this.client.config.logs);
         if(logs){

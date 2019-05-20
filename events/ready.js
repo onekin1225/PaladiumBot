@@ -22,11 +22,11 @@ module.exports = class {
         // Update the game every 20s
         var games = [
             {
-                name:`@Paladium'Bot help on {servs} servers`,
+                name:`${client.config.prefix}help sur {servs} serveurs`,
                 type:`LISTENING`
             },
             {
-                name:`add me with ${client.config.prefix}invite!`,
+                name:`ajoutez-moi avec ${client.config.prefix}invite!`,
                 type:`STREAMING`
             }
         ];

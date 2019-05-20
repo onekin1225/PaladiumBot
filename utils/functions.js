@@ -11,6 +11,11 @@ module.exports = {
     async updateStats(client, guildID){
         request("https://mcapi.us/server/status?ip="+client.config.palaIP, { json: true }, async function (error, response, body) {
             if(error) return;
+            if(!body.players){
+                body.players = {
+                    now:0
+                }
+            }
             var status = "【🛡】Statut : "+(body.online ? "En ligne" : "Hors ligne");
             var players = "【👥】Joueurs : "+body.players.now;
             client.guilds.forEach(guild => {
@@ -82,6 +87,72 @@ module.exports = {
         } catch(e){
             // if there is an error, catch them
             return console.log(e);
+        }
+    },
+
+    /**
+     * Check if a guild is correctly installed
+     *
+     * @param {object} client The discord client
+     * @param {string} guildId The guild ID
+     *
+     * @returns Boolean, if the guild is correctly installed
+     */
+    checkGuild(client, guildId){
+        var gData = client.databases[0].get(guildId);
+        if(!gData){
+            return false;
+        } else {
+            var guild = client.guilds.get(guildId);
+            var category = guild.channels.get(gData.category);
+            var status = guild.channels.get(gData.status);
+            var players = guild.channels.get(gData.players);
+            if(!status && !players){
+                return false;
+            } else {
+                return true;
+            }
+        }
+    },
+
+     /**
+     * Clear a guild
+     *
+     * @param {object} client The discord client
+     * @param {string} guildId The guild ID
+     *
+     */
+    clearGuild(client, guildId){
+        var gData = client.databases[0].get(guildId);
+        var guild = client.guilds.get(guildId);
+        if(gData){
+            var category = guild.channels.get(gData.category);
+            var status = guild.channels.get(gData.status);
+            var players = guild.channels.get(gData.players);
+            if(category){
+                category.delete();
+            }
+            if(status){
+                status.delete();
+            }
+            if(players){
+                players.delete();
+            }
+            return true;
+        } else {
+            var tcategory = guild.channels.filter(ch => ch.type === "category").find(ch => ch.name === "PALADIUM BOT");
+            var tstatus = guild.channels.filter(ch => ch.type === "voice").find(ch => ch.name.startsWith("【🛡】Statut :"));
+            var tplayers = guild.channels.filter(ch => ch.type === "voice").find(ch => ch.name.startsWith("【👥】Joueurs :"));
+            if(tcategory){
+                tcategory.delete();
+            }
+            if(tstatus){
+                tstatus.delete();
+            }
+            if(tplayers){
+                tplayers.delete();
+            }
+            return true;
         }
     }
 
