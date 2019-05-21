@@ -27,8 +27,9 @@ class Help extends Command {
         var helpEmbed = new Discord.RichEmbed()
             .setAuthor("Liste des commandes")
             .addField("Utils",
-                "`"+prefix+"links` : Affiche les principaux liens de Paladium !\n"+
-                "`"+prefix+"invite` : Inviter le bot sur votre serveur !"
+                "`"+prefix+"liens` : Affiche les principaux liens de Paladium !\n"+
+                "`"+prefix+"invite` : Inviter le bot sur votre serveur !\n"+
+                "`"+prefix+"conseil` : Vous donne quelques conseils pour Paladium !"
             )
             .addField("Stats",
                 "`"+prefix+"setup` : Remet en place les salons de stats !\n"+

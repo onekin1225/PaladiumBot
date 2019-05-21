@@ -4,17 +4,17 @@ Discord = require('discord.js');
 class Links extends Command {
     constructor (client) {
         super(client, {
-            name: "links",
+            name: "liens",
             description: "Affiche les principaux liens de Paladium !",
             dirname: __dirname,
-            usage: "links",
+            usage: "liens",
             enabled: true,
             guildOnly: false,
-            aliases: ["liens"],
+            aliases: ["links"],
             permission: false,
             botpermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
-            examples: "$links",
+            examples: "$liens",
             owner: false,
             cooldown: 5000
         });
