@@ -1,32 +1,33 @@
 const Command = require("../../base/Command.js"),
 Discord = require('discord.js');
 
-class Astuce extends Command {
+class Tricks extends Command {
     constructor (client) {
         super(client, {
-            name: "astuce",
+            name: "conseil",
             description: "Vous donne quelques conseils sur Paladium !",
             dirname: __dirname,
-            usage: "astuce",
+            usage: "conseil",
             enabled: true,
             guildOnly: false,
-            aliases: ["astuces"],
+            aliases: ["conseils"],
             permission: false,
             botpermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
             nsfw: false,
-            examples: "$astuce",
+            examples: "$conseil",
             owner: false,
-            cooldown: 3000
+            cooldown: 2000
         });
     }
 
     async run (message, args, data) {
 
         var tricks = require("../../data/tricks.js");
-        var trick = tricks[Math.floor(Math.random()*tricks.length)];
+        var nb = Math.floor(Math.random()*tricks.length);
+        var trick = tricks[nb];
 
         var embed = new Discord.RichEmbed()
-            .setAuthor("Palastuce")
+            .setAuthor("Palastuce #"+parseInt(nb+1, 10))
             .setDescription(trick)
             .setColor(data.color)
             .setFooter("Une astuce secrète que vous connaissez ? Rejoignez notre Discord !");
@@ -36,4 +37,4 @@ class Astuce extends Command {
 
 }
 
-module.exports = Astuce;
+module.exports = Tricks;
