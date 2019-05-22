@@ -1,4 +1,5 @@
 module.exports = [
+
     `Saviez vous que vous pouvez modifier le gamma de votre jeu Minecraft pour ne plus avoir à utiliser un casque en paladium ?
     Cliquez [ici](https://minecraft.fr/les-astuces-de-tonton-voltaire-17-fevrier/) pour savoir comment le modifier !`,
 
@@ -25,6 +26,10 @@ module.exports = [
 
     `Veillez à avoir toujours une base de backup, sur un autre serveur que la principale !`,
 
-    `Faites vraiment attention aux membres qui sont téléportés lorsque vous avez des projets de base claim de grande envergure... Une seule personne peut ruiner le travail de dizaines de personnes !`
+    `Faites vraiment attention aux membres qui sont téléportés lorsque vous avez des projets de base claim de grande envergure... Une seule personne peut ruiner le travail de dizaines de personnes !`,
+
+    `Dépenser un lingot de Paladium pour se faire téléporter loin en minages est une bonne affaire !`,
+
+    `Connaissiez-vous la commande \`/me\` ? Elle vous permet de définir votre humeur sur Paladium ! Essayez là !`
 
 ];
