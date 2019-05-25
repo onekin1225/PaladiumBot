@@ -5,8 +5,8 @@ const { promisify } = require("util"),
 fs = require("fs"),
 path = require("path"),
 readdir = promisify(require("fs").readdir),
-quickdb = require("quick.db");
-quickdb.init("./data/palabot.sqlite");
+Quickdb = require("quick.db");
+Quickdb.init("./data/palabot.sqlite");
 
 const config = require("./data/config.js"),
 logger = require("./utils/logger.js"),
@@ -24,9 +24,9 @@ class PalaBot extends Client {
         this.functions = require("./utils/functions.js"); // Load the functions file
         this.logger = logger;
         this.databases = [ // Create tables (quick.db)
-            new quickdb.table("serversdata"),
-            new quickdb.table("cooldows"),
-            new quickdb.table("guildsettings")
+            new Quickdb.table("serversdata"),
+            new Quickdb.table("cooldows"),
+            new Quickdb.table("guildsettings")
         ],
         this.emotes = config.emotes;
     }
@@ -37,9 +37,11 @@ class PalaBot extends Client {
             const props = new (require(`${commandPath}${path.sep}${commandName}`))(this);
             this.logger.log(`Loading Command: ${props.help.name}. 👌`, "log");
             props.conf.location = commandPath;
-            if (props.init) props.init(this);
+            if (props.init){
+                props.init(this);
+            }
             this.commands.set(props.help.name, props);
-            props.conf.aliases.forEach(alias => {
+            props.conf.aliases.forEach((alias) => {
                 this.aliases.set(alias, props.help.name);
             });
             return false;
@@ -53,9 +55,15 @@ class PalaBot extends Client {
         let command;
         if (this.commands.has(commandName)) {
             command = this.commands.get(commandName);
-        } else if (this.aliases.has(commandName)) command = this.commands.get(this.aliases.get(commandName));
-        if (!command) return `The command \`${commandName}\` doesn't seem to exist, nor is it an alias. Try again!`;
-        if (command.shutdown) await command.shutdown(this);
+        } else if (this.aliases.has(commandName)){
+            command = this.commands.get(this.aliases.get(commandName));
+        }
+        if (!command){
+            return `The command \`${commandName}\` doesn't seem to exist, nor is it an alias. Try again!`;
+        }
+        if (command.shutdown){
+            await command.shutdown(this);
+        }
         delete require.cache[require.resolve(`${commandPath}${path.sep}${commandName}.js`)];
         return false;
     }
@@ -74,7 +82,7 @@ const init = async () => {
     client.logger.log(`Loading a total of ${directories.length} categories.`, "log");
     directories.forEach(async (dir) => {
         let commands = await readdir("./commands/"+dir+"/");
-        commands.filter(cmd => cmd.split(".").pop() === "js").forEach((cmd) => {
+        commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
             const response = client.loadCommand("./commands/"+dir, cmd);
             if(response){
                 client.logger.error(response);
@@ -89,7 +97,7 @@ const init = async () => {
         const eventName = file.split(".")[0];
         client.logger.log(`Loading Event: ${eventName}`);
         const event = new (require(`./events/${file}`))(client);
-        client.on(eventName, (...args) => event.run(...args).catch(err => console.log(err)));
+        client.on(eventName, (...args) => event.run(...args).catch((err) => console.log(err)));
         delete require.cache[require.resolve(`./events/${file}`)];
     });
 

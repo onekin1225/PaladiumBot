@@ -1,6 +1,6 @@
 const Command = require("../../base/Command.js"),
-Discord = require('discord.js'),
-request = require('request');
+Discord = require("discord.js"),
+request = require("request");
 
 class Status extends Command {
     constructor (client) {
@@ -25,14 +25,16 @@ class Status extends Command {
 
         var e = this.client.emotes;
 
-        message.channel.send(this.client.emotes.loading+" | Collecte des données des serveurs de Paladium...").then(async m => {
+        message.channel.send(this.client.emotes.loading+" | Collecte des données des serveurs de Paladium...").then(async (m) => {
             var embed = new Discord.RichEmbed()
                 .setAuthor("Paladium", "https://cdn.discordapp.com/emojis/579661928767422464.png")
                 .setColor(data.color)
                 .setFooter("Une idée pour améliorer le bot ? Rejoignez notre Discord !");
 
             request("https://mcapi.us/server/status?ip="+this.client.config.palaIP, { json: true }, async function (error, response, body) {
-                if(error) return;
+                if(error){
+                    return m.edit(this.client.emotes.error+" | Une erreur est survenue...");
+                }
                 if(!body.players){
                     body.players = {
                         now:0
@@ -56,6 +58,6 @@ class Status extends Command {
         });
     }
 
-}
+};
 
 module.exports = Status;

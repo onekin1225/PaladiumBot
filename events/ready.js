@@ -11,7 +11,7 @@ module.exports = class {
         var client = this.client;
 
         // Logs some informations using the logger file
-        client.logger.log(`Loading a total of ${client.commands.size} command(s).`, 'log');
+        client.logger.log(`Loading a total of ${client.commands.size} command(s).`, "log");
         client.logger.log(`${client.user.tag}, ready to serve ${client.users.size} users in ${client.guilds.size} servers.`, "ready");
 
         /* Post DBL stats
@@ -23,18 +23,22 @@ module.exports = class {
         var games = [
             {
                 name:`${client.config.prefix}help sur {servs} serveurs`,
-                type:`LISTENING`
+                type:"LISTENING"
             },
             {
                 name:`ajoutez-moi avec ${client.config.prefix}invite!`,
-                type:`STREAMING`
+                type:"STREAMING"
             }
         ];
         var i = 0;
         setInterval(function(){
             client.user.setActivity(games[i].name.replace("{servs}", client.guilds.size), {type: games[i].type});
-            if(games[parseInt(i + 1)]) i++;
-            else i = 0;
+            if(games[parseInt(i + 1)]){
+                i++;
+            }
+            else {
+                i = 0;
+            }
         }, 20000);
 
         setInterval(client.functions.updateStats, 300000, client);

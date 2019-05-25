@@ -13,4 +13,4 @@ module.exports = {
         off:"<:statusOff:XXXXXXXXXXXX>",
         player:"<:player:XXXXXXXXXXXX>"
     }
-}
+};

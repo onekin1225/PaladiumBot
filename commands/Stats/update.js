@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-Discord = require('discord.js');
+Discord = require("discord.js");
 
 class Update extends Command {
     constructor (client) {
@@ -21,9 +21,11 @@ class Update extends Command {
     }
 
     async run (message, args, data) {
-        message.channel.send(this.client.emotes.loading+" | Je suis en train de mettre à jour vos salons...").then(async m => {
+        message.channel.send(this.client.emotes.loading+" | Je suis en train de mettre à jour vos salons...").then(async (m) => {
             var isOk = this.client.functions.checkGuild(this.client, message.guild.id);
-            if(!isOk) return m.edit(this.client.emotes.error+" | Aucun salon à mettre à jour ! Pour créer les salons, utilisez `"+this.client.config.prefix+"setup` !");
+            if(!isOk){
+                return m.edit(this.client.emotes.error+" | Aucun salon à mettre à jour ! Pour créer les salons, utilisez `"+this.client.config.prefix+"setup` !");
+            }
             await this.client.functions.updateStats(this.client, message.guild.id);
             m.edit(this.client.emotes.success+" | J'ai mis à jour les salons !");
         });

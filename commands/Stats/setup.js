@@ -1,5 +1,5 @@
 const Command = require("../../base/Command.js"),
-Discord = require('discord.js');
+Discord = require("discord.js");
 
 class Setup extends Command {
     constructor (client) {
@@ -21,7 +21,7 @@ class Setup extends Command {
     }
 
     async run (message, args, data) {
-        message.channel.send(this.client.emotes.loading+" | Création des salons en cours...").then(async m => {
+        message.channel.send(this.client.emotes.loading+" | Création des salons en cours...").then(async (m) => {
             await this.client.functions.clearGuild(this.client, message.guild.id);
             await this.client.functions.createStatsChannels(this.client, message.guild);
             await this.client.functions.updateStats(this.client, message.guild.id);

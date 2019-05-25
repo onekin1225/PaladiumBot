@@ -11,8 +11,8 @@ module.exports = class {
 
     async run (message) {
 
-        // If the messagr author is a bot
-        if (message.author.bot || !message.guild){
+        // If the message author is a bot
+        if (message.author.bot || !message.guild){
             return;
         }
 
@@ -42,13 +42,13 @@ module.exports = class {
 
         // Check bot permissions :
         var neededPermission = [];
-        cmd.conf.botpermissions.forEach(perm => {
+        cmd.conf.botpermissions.forEach((perm) => {
             if(!message.channel.permissionsFor(message.guild.me).has(perm)){
                 neededPermission.push(perm);
             }
         });
         if(neededPermission.length > 0){
-            return message.channel.send(this.client.emotes.error+" | J'ai besoin des permissions suivantes pour effectuer cette commande : `"+neededPermission.map(p => p).join(", ")+"` !");
+            return message.channel.send(this.client.emotes.error+" | J'ai besoin des permissions suivantes pour effectuer cette commande : `"+neededPermission.join(", ")+"` !");
         }
 
         // checks if the command can be launched

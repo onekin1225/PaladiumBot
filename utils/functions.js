@@ -10,15 +10,17 @@ module.exports = {
      */
     async updateStats(client, guildID){
         request("https://mcapi.us/server/status?ip="+client.config.palaIP, { json: true }, async function (error, response, body) {
-            if(error) return;
+            if(error){
+                return;
+            }
             if(!body.players){
                 body.players = {
                     now:0
-                }
+                };
             }
             var status = "【🛡】Statut : "+(body.online ? "En ligne" : "Hors ligne");
             var players = "【👥】Joueurs : "+body.players.now;
-            client.guilds.forEach(guild => {
+            client.guilds.forEach((guild) => {
                 if(guildID && guild.id !== guildID){
                     return;
                 } else {
@@ -57,9 +59,9 @@ module.exports = {
             };
 
             // Create category
-            await guild.createChannel("PALADIUM BOT", { type:"category" }).then(ch => {
+            await guild.createChannel("PALADIUM BOT", { type:"category" }).then((ch) => {
                 channels.category = ch.id;
-                ch.overwritePermissions(guild.roles.find(r => r.name === "@everyone"), {
+                ch.overwritePermissions(guild.roles.find((r) => r.name === "@everyone"), {
                     "CONNECT":false,
                     "VIEW_CHANNEL":true
                 });
@@ -69,7 +71,7 @@ module.exports = {
             await guild.createChannel("【🛡】Statut : Patientez...", {
                 type:"voice",
                 parent:channels.category
-            }).then(ch => {
+            }).then((ch) => {
                 channels.status = ch.id;
             });
 
@@ -77,7 +79,7 @@ module.exports = {
             await guild.createChannel("【👥】Joueurs : Patientez...", {
                 type:"voice",
                 parent:channels.category
-            }).then(ch => {
+            }).then((ch) => {
                 channels.players = ch.id;
             });
 
@@ -140,9 +142,9 @@ module.exports = {
             }
             return true;
         } else {
-            var tcategory = guild.channels.filter(ch => ch.type === "category").find(ch => ch.name === "PALADIUM BOT");
-            var tstatus = guild.channels.filter(ch => ch.type === "voice").find(ch => ch.name.startsWith("【🛡】Statut :"));
-            var tplayers = guild.channels.filter(ch => ch.type === "voice").find(ch => ch.name.startsWith("【👥】Joueurs :"));
+            var tcategory = guild.channels.filter((ch) => ch.type === "category").find((ch) => ch.name === "PALADIUM BOT");
+            var tstatus = guild.channels.filter((ch) => ch.type === "voice").find((ch) => ch.name.startsWith("【🛡】Statut :"));
+            var tplayers = guild.channels.filter((ch) => ch.type === "voice").find((ch) => ch.name.startsWith("【👥】Joueurs :"));
             if(tcategory){
                 tcategory.delete();
             }

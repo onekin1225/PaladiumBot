@@ -26,7 +26,7 @@ class Conseils extends Command {
         var tConseils = [];
         var tUData = uData[message.author.id];
         if(tUData){
-            tConseils = conseils.filter(c => !tUData.includes(c));
+            tConseils = conseils.filter((c) => !tUData.includes(c));
             if(tConseils.length < 1){
                 tConseils = conseils;
             }
