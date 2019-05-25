@@ -12,7 +12,7 @@ class Setup extends Command {
             guildOnly: false,
             aliases: ["conf"],
             permission: "MANAGE_GUILD",
-            botpermissions: [ "SEND_MESSAGES", "EMBED_LINKS", "MANAGE_CHANNELS" ],
+            botpermissions: [ "SEND_MESSAGES", "EMBED_LINKS", "MANAGE_CHANNELS", "ADMINISTRATOR" ],
             nsfw: false,
             examples: "$setup",
             owner: false,
