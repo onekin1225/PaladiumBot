@@ -28,7 +28,7 @@ class Invite extends Command {
                 "[Accéder au Discord des développeurs du bot](https://discord.gg/NPReeRB)"
             )
             .addField("Ajouter le bot",
-                "[Inviter le bot sur votre propre serveur](https://discordapp.com/oauth2/authorize?client_id=557649686417113149&permissions=2146958847&scope=bot)"
+                "[Inviter le bot sur votre propre serveur](https://discordapp.com/oauth2/authorize?client_id="+this.client.user.id+"&permissions=2146958847&scope=bot)"
             )
             .setFooter("Une idée pour améliorer le bot ? Rejoignez notre Discord !")
             .setThumbnail("https://cdn.discordapp.com/emojis/579661928767422464.png")
