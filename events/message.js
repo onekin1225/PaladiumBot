@@ -71,11 +71,7 @@ module.exports = class {
             this.client.databases[0].set(message.author.id+cmd.help.name, Date.now()+cmd.conf.cooldown);
         }
 
-        var logEmbed = new Discord.RichEmbed().setAuthor(message.author.tag, message.author.displayAvatarURL).setDescription(message.author.username+" vient d'effectuer la commande "+cmd.help.name+" !");
-        var logs = this.client.channels.get(this.client.config.logs);
-        if(logs){
-            logs.send(logEmbed);
-        }
+        this.client.logger.log(`${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, "cmd");
 
         // If the command exists, **AND** the user has permission, run it.
         cmd.run(message, args, {
