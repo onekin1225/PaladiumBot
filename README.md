@@ -24,11 +24,11 @@ Voilà la liste totale des commandes proposées par le bot :
 `p!welcome #salon` : Active les images de bienvenue dans le salon mentionné !  
 `p!welcome off` : Désactive les images de bienvenue !  
 
-> <img src="https://zupimages.net/up/19/21/zzll.png" width="500"/>  
+> <img src="https://zupimages.net/up/19/21/zzll.png" width="500"/><br>
 > Page d'aide du bot  
 
 
-> <img src="https://zupimages.net/up/19/21/eymn.png" width="500"/>  
+> <img src="https://zupimages.net/up/19/21/eymn.png" width="500"/><br>
 > Image de bienvenue (avec le logo de Paladium en fond)
 
 ## Ajouter le bot
