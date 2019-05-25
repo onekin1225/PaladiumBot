@@ -2,10 +2,7 @@ module.exports = [
 
     `Saviez vous que vous pouvez modifier le gamma de votre jeu Minecraft pour ne plus avoir à utiliser un casque en paladium ?
     Cliquez [ici](https://minecraft.fr/les-astuces-de-tonton-voltaire-17-fevrier/) pour savoir comment le modifier !`,
-
-    `Le nouveau shop de la v6 est sortie, mais beaucoup de joueurs préfèrent l'ancien. Et il existe un moyen d'y accéder !
-    Taper \`/shop\` vous donnera le nouveau shop et \`/Shop\` l'ancien !`,
-
+    
     `Une base à moins de 15 000 blocs du spawn est une base pillée.`,
 
     `Le Grinder est un des items les plus utiles de Paladium, qui devrait être crafté bien avant les stuff p4...`,
