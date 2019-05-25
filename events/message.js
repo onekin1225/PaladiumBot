@@ -22,8 +22,7 @@ module.exports = class {
         }
 
         // Checks if the bot was mentioned, with no message after it, returns the prefix.
-        const prefixMention = new RegExp(`^<@!?${this.client.user.id}>( |)$`);
-        if(message.content.match(prefixMention)){
+        if(message.content.match(`<@${this.client.user.id}>`)){
             return message.channel.send("Bonjour, "+message.author+" ! Obtiens la liste des commandes grâce à `"+this.client.config.prefix+"help` !");
         }
 

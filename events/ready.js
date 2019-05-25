@@ -32,7 +32,7 @@ module.exports = class {
         ];
         var i = 0;
         setInterval(function(){
-            client.user.setActivity(games[i].name.replace("{servs}", client.guilds.size), {type: games[i].type});
+            client.user.setActivity(games[parseInt(i, 10)].name.replace("{servs}", client.guilds.size), {type: games[parseInt(i, 10)].type});
             if(games[parseInt(i + 1)]){
                 i++;
             }

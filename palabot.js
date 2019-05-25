@@ -4,7 +4,7 @@ const { Client, Collection } = require("discord.js");
 const { promisify } = require("util"),
 fs = require("fs"),
 path = require("path"),
-readdir = promisify(require("fs").readdir),
+readdir = promisify(fs.readdir),
 Quickdb = require("quick.db");
 Quickdb.init("./data/palabot.sqlite");
 

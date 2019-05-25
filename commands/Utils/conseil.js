@@ -35,7 +35,7 @@ class Conseils extends Command {
         }
         
         var nb = Math.floor(Math.random()*tConseils.length);
-        var conseil = tConseils[nb];
+        var conseil = tConseils[parseInt(nb, 10)];
         if(uData[message.author.id]){
             uData[message.author.id].push(conseil);
         } else {
