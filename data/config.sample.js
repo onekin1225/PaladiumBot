@@ -5,6 +5,7 @@ module.exports = {
     color:"#FF0000",
     owner:"The owner ID",
     palaIP:"proxy.paladium-pvp.fr",
+    discordBotsToken:"Your https://discordbots.org/ bot token",
     emotes:{ // An array of your custom emojis : <:EmojiName:EmojiID> (animated emoji <a:EmojiName:EmojiID>)
         error:"<:error:XXXXXXXXXXXX>",
         success:"<:success:XXXXXXXXXXXX>",
