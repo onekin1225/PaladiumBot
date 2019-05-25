@@ -4,6 +4,25 @@ Le seul bot Discord qui vous permet d'avoir des salons avec les statistiques du 
 
 ## Fonctionnalités
 
+<a href="https://nodejs.org/">
+    <image src="https://img.shields.io/badge/node--js-v8.16.0-brightgreen.svg?logo=node.js&longCache=true&style=flat-square">
+</a>
+<a href="http://npmjs.com/">
+    <image src="https://img.shields.io/badge/npm-6.9.0-orange.svg?logo=npm&longCache=true&style=flat-square">
+</a>
+<a href="https://www.npmjs.com/package/discord.js">
+    <image src="https://img.shields.io/badge/discord.js-v11.5.0--dev-blue.svg?logo=npm&longCache=true&style=flat-square">
+</a>
+<a href="https://discord.gg/Ntv5bJR">
+    <image src="https://img.shields.io/discord/565048515357835264.svg?logo=discord&longCache=true&style=flat-square&colorB=7289DA">
+</a>
+<a href="https://codacy.com">
+    <img src="https://api.codacy.com/project/badge/Grade/09db60a8543d460fbfd4f5c58e1746a1"/>
+</a>
+<a href="https://discordbots.org/bot/579653463290675221" >
+  <img src="https://discordbots.org/api/widget/status/579653463290675221.svg" alt="Atlanta" />
+</a>
+
 ### Salons de stats
 
 Paladium'Bot vous permet d'afficher des salons avec les statistiques du serveur Minecraft Paladium :
