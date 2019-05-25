@@ -25,7 +25,7 @@ class PalaBot extends Client {
         this.logger = logger;
         this.databases = [ // Create tables (quick.db)
             new Quickdb.table("serversdata"),
-            new Quickdb.table("cooldows"),
+            new Quickdb.table("cooldowns"),
             new Quickdb.table("guildsettings")
         ],
         this.emotes = config.emotes;
@@ -97,7 +97,7 @@ const init = async () => {
         const eventName = file.split(".")[0];
         client.logger.log(`Loading Event: ${eventName}`);
         const event = new (require(`./events/${file}`))(client);
-        client.on(eventName, (...args) => event.run(...args).catch((err) => console.log(err)));
+        client.on(eventName, (...args) => event.run(...args));
         delete require.cache[require.resolve(`./events/${file}`)];
     });
 
@@ -115,5 +115,5 @@ client.on("disconnect", () => client.logger.warn("Bot is disconnecting..."))
 
 // if there is an unhandledRejection, log them
 process.on("unhandledRejection", (err) => {
-    console.error("Uncaught Promise Error: ", err);
+    client.logger.error("Uncaught Promise Error: ", err);
 });
