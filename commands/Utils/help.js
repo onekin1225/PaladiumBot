@@ -9,11 +9,9 @@ class Help extends Command {
             dirname: __dirname,
             usage: "help",
             enabled: true,
-            guildOnly: false,
             aliases: ["aide"],
             permission: false,
             botpermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
-            nsfw: false,
             examples: "$help",
             owner: false,
             cooldown: 2000
@@ -35,6 +33,10 @@ class Help extends Command {
                 "`"+prefix+"setup` : Remet en place les salons de stats !\n"+
                 "`"+prefix+"update` : Force les salons de stats à se mettre à jour ! (sinon mise à jour auto toutes les 5 minutes)\n"+
                 "`"+prefix+"status` : Affiche le statut de Paladium !"
+            )
+            .addField("Bienvenue",
+                "`"+prefix+"welcome #salon` : Active les images de bienvenue dans le salon mentionné !\n"+
+                "`"+prefix+"welcome off` : Désactive les images de bienvenue !"
             )
             .addField("Informations",
                 "[Invitation](https://discordapp.com/oauth2/authorize?client_id=557649686417113149&permissions=2146958847&scope=bot) | "+

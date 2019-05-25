@@ -1,7 +1,7 @@
 const Command = require("../../base/Command.js"),
-Discord = require('discord.js');
+Discord = require("discord.js");
 
-class Links extends Command {
+class Liens extends Command {
     constructor (client) {
         super(client, {
             name: "liens",
@@ -9,11 +9,9 @@ class Links extends Command {
             dirname: __dirname,
             usage: "liens",
             enabled: true,
-            guildOnly: false,
             aliases: ["links"],
             permission: false,
             botpermissions: [ "SEND_MESSAGES", "EMBED_LINKS" ],
-            nsfw: false,
             examples: "$liens",
             owner: false,
             cooldown: 5000
@@ -68,4 +66,4 @@ class Links extends Command {
 
 }
 
-module.exports = Links;
+module.exports = Liens;
