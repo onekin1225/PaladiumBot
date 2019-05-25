@@ -11,7 +11,7 @@ Le seul bot Discord qui vous permet d'avoir des salons avec les statistiques du 
     <image src="https://img.shields.io/badge/npm-6.9.0-orange.svg?logo=npm&longCache=true&style=flat-square">
 </a>
 <a href="https://www.npmjs.com/package/discord.js">
-    <image src="https://img.shields.io/badge/discord.js-v11.5.0--dev-blue.svg?logo=npm&longCache=true&style=flat-square">
+    <image src="https://img.shields.io/badge/discord.js-v11.5.0-blue.svg?logo=npm&longCache=true&style=flat-square">
 </a>
 <a href="https://discord.gg/Ntv5bJR">
     <image src="https://img.shields.io/discord/565048515357835264.svg?logo=discord&longCache=true&style=flat-square&colorB=7289DA">
