@@ -14,10 +14,10 @@ module.exports = class {
         client.logger.log(`Loading a total of ${client.commands.size} command(s).`, "log");
         client.logger.log(`${client.user.tag}, ready to serve ${client.users.size} users in ${client.guilds.size} servers.`, "ready");
 
-        /* Post DBL stats
+        // Post DBL stats
         const DBL = require("dblapi.js");
         const dbl = new DBL(client.config.discordBotsToken, client);
-        dbl.postStats(client.guilds.size);*/
+        dbl.postStats(client.guilds.size);
 
         // Update the game every 20s
         var games = [
@@ -39,7 +39,7 @@ module.exports = class {
             else {
                 i = 0;
             }
-        }, 20000);
+        }, 30000);
 
         setInterval(client.functions.updateStats, 300000, client);
 
