@@ -53,7 +53,7 @@ module.exports = class {
         // checks if the command can be launched
         if(cmd.conf.permission){
             if(!message.member.hasPermission(cmd.conf.permission)){
-                return message.channel.send(this.client.emotes.erorr+" | Vous ne disposez pas des permissions nécessaires pour effectuer cette commande (`"+cmd.conf.permission+"`) !");
+                return message.channel.send(this.client.emotes.error+" | Vous ne disposez pas des permissions nécessaires pour effectuer cette commande (`"+cmd.conf.permission+"`) !");
             }
         }
         if(!cmd.conf.enabled){
