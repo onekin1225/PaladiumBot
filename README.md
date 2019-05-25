@@ -51,7 +51,7 @@ Voilà la liste totale des commandes proposées par le bot :
 
 ## Ajouter le bot
 
-Pour ajouter le bot sur votre serveur, cliquez simplement [ici](https://discordapp.com/oauth2/authorize?client_id=557649686417113149&permissions=2146958847&scope=bot) !  
+Pour ajouter le bot sur votre serveur, cliquez simplement [ici](https://discordapp.com/oauth2/authorize?client_id=579653463290675221&permissions=2146958847&scope=bot) !  
 Si vous voulez utilisez des permissions différentes, cliquez [ici](https://finitereality.github.io/permissions-calculator/?v=0).
 
 ## Support
