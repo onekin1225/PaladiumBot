@@ -85,7 +85,7 @@ const init = async () => {
         commands.filter((cmd) => cmd.split(".").pop() === "js").forEach((cmd) => {
             const response = client.loadCommand("./commands/"+dir, cmd);
             if(response){
-                client.logger.error(response);
+                client.logger.log(response, "error");
             }
         });
     });
@@ -108,12 +108,20 @@ const init = async () => {
 init();
 
 // if there are errors, log them
-client.on("disconnect", () => client.logger.warn("Bot is disconnecting..."))
+client.on("disconnect", () => client.logger.log("Bot is disconnecting...", "warn"))
     .on("reconnecting", () => client.logger.log("Bot reconnecting...", "log"))
-    .on("error", (e) => client.logger.error(e))
-    .on("warn", (info) => client.logger.warn(info));
+    .on("error", (e) => client.logger.log(e, "error"))
+    .on("warn", (info) => client.logger.log(info, "log"))
+    .on("guildCreate", (guild) => {
+        var newGuild = new Discord.RichEmbed().setAuthor(guild.name, guild.iconURL).setColor("#32CD32").setDescription("J'ai rejoint **"+guild.name+"**, avec **"+guild.members.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.filter((m) => m.user.bot).size+" bots)");
+        client.channels.get(client.config.logs).send(newGuild);
+    })
+    .on("guildDelete", (guild) => {
+        var oldGuild = new Discord.RichEmbed().setAuthor(guild.name, guild.iconURL).setColor("#B22222").setDescription("Quelqu'un m'a expulsé de **"+guild.name+"** avec **"+guild.members.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.filter((m) => m.user.bot).size+" bots)");
+        client.channels.get(client.config.logs).send(oldGuild);
+    });
 
 // if there is an unhandledRejection, log them
 process.on("unhandledRejection", (err) => {
-    client.logger.error("Uncaught Promise Error: ", err);
+    client.logger.log("Uncaught Promise Error: "+err, "error");
 });

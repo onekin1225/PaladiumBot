@@ -18,17 +18,17 @@ module.exports = {
                     now:0
                 };
             }
-            var status = "【🛡】Statut : "+(body.online ? "En ligne" : "Maintenance");
+            var status = "【🛡】Statut : "+(body.online ? "En ligne" : "Hors ligne");
             var players = "【👥】Joueurs : "+body.players.now;
-            client.guilds.forEach((guild) => {
+            client.guilds.forEach((guild) => { // For each server
                 if(guildID && guild.id !== guildID){
                     return;
                 } else {
-                    var gData = client.databases[0].get(guild.id);
+                    var gData = client.databases[0].get(guild.id); // gets channels IDs
                     if(gData){
                         var tstatus = guild.channels.get(gData.status);
                         if(tstatus){
-                            tstatus.setName(status);
+                            tstatus.setName(status); // Update channels names
                         }
                         var tplayers = guild.channels.get(gData.players);
                         if(tplayers){

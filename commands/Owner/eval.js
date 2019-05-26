@@ -42,7 +42,7 @@ class Eval extends Command {
             if (err.includes(this.client.token)){
                 err = err.replace(this.client.token, "T0K3N");
             }
-            return message.channel.send(err, { code: "js" })
+            return message.channel.send(err, { code: "js" });
         });
 
     }

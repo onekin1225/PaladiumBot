@@ -38,7 +38,7 @@ class Status extends Command {
                 if(!body.players){
                     body.players = {
                         now:0
-                    }
+                    };
                 }
                 embed.setDescription((body.online ? "Les serveurs de Paladium sont en ligne !" : "Les serveurs de Paladium sont en maintenance..."));
                 if(body.online){
@@ -57,7 +57,6 @@ class Status extends Command {
             });
         });
     }
-
-};
+}
 
 module.exports = Status;
