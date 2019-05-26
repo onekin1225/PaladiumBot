@@ -16,7 +16,7 @@ class Welcome extends Command {
             botpermissions: [ "SEND_MESSAGES", "EMBED_LINKS", "MANAGE_CHANNELS" ],
             nsfw: false,
             examples: "$welcome",
-            owner: true,
+            owner: false,
             cooldown: 0
         });
     }
