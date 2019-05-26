@@ -49,47 +49,48 @@ module.exports = {
      * @returns The configuration of the guild
      */
     async createStatsChannels(client, guild){
-        try {
-
-            // used to store channel IDs
-            var channels = {
-                category:null,
-                status:null,
-                players:null
-            };
-
-            // Create category
-            await guild.createChannel("PALADIUM BOT", { type:"category" }).then((ch) => {
-                channels.category = ch.id;
-                ch.overwritePermissions(guild.roles.find((r) => r.name === "@everyone"), {
-                    "CONNECT":false,
-                    "VIEW_CHANNEL":true
+        return new Promise(function(resolve, reject){
+            try {
+                // used to store channel IDs
+                var channels = {
+                    category:null,
+                    status:null,
+                    players:null
+                };
+    
+                // Create category
+                guild.createChannel("PALADIUM BOT", { type:"category" }).then((cat) => {
+                    // Update channels object
+                    channels.category = cat.id;
+                    // Create permissions for the category
+                    cat.overwritePermissions(guild.roles.find((r) => r.name === "@everyone"), {
+                        "CONNECT":false,
+                        "VIEW_CHANNEL":true
+                    }).then(async () => {
+                        // Create status channel
+                        await guild.createChannel("【🛡】Statut : Patientez...", {
+                            type:"voice",
+                            parent:channels.category
+                        }).then((ch) => {
+                            channels.status = ch.id;
+                        });
+                        // Create players channel
+                        await guild.createChannel("【👥】Joueurs : Patientez...", {
+                            type:"voice",
+                            parent:channels.category
+                        }).then((ch) => {
+                            channels.players = ch.id;
+                        });
+                        // Save in the db
+                        client.databases[0].set(guild.id, channels);
+                        resolve(client.databases[0].get(guild.id));
+                    });
                 });
-            });
-
-            // Create status channel
-            await guild.createChannel("【🛡】Statut : Patientez...", {
-                type:"voice",
-                parent:channels.category
-            }).then((ch) => {
-                channels.status = ch.id;
-            });
-
-            // Create players channel
-            await guild.createChannel("【👥】Joueurs : Patientez...", {
-                type:"voice",
-                parent:channels.category
-            }).then((ch) => {
-                channels.players = ch.id;
-            });
-
-            // Save in the db
-            client.databases[0].set(guild.id, channels);
-            return client.databases[0].get(guild.id);
-        } catch(e){
-            // if there is an error, catch them
-            return console.log(e);
-        }
+            } catch(e){
+                // if there is an error, catch them
+                reject("error");
+            }
+        });
     },
 
     /**
