@@ -1,5 +1,5 @@
 // Load up the discord.js library
-const { Client, Collection } = require("discord.js");
+const { Client, Collection, RichEmbed } = require("discord.js");
 // We also load the rest of the things we need in this file:
 const { promisify } = require("util"),
 fs = require("fs"),
@@ -24,9 +24,9 @@ class PalaBot extends Client {
         this.functions = require("./utils/functions.js"); // Load the functions file
         this.logger = logger;
         this.databases = [ // Create tables (quick.db)
-            new Quickdb.table("serversdata"),
-            new Quickdb.table("cooldowns"),
-            new Quickdb.table("guildsettings")
+            new Quickdb.Table("serversdata"),
+            new Quickdb.Table("cooldowns"),
+            new Quickdb.Table("guildsettings")
         ],
         this.emotes = config.emotes;
     }
@@ -113,11 +113,11 @@ client.on("disconnect", () => client.logger.log("Bot is disconnecting...", "warn
     .on("error", (e) => client.logger.log(e, "error"))
     .on("warn", (info) => client.logger.log(info, "log"))
     .on("guildCreate", (guild) => {
-        var newGuild = new Discord.RichEmbed().setAuthor(guild.name, guild.iconURL).setColor("#32CD32").setDescription("J'ai rejoint **"+guild.name+"**, avec **"+guild.members.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.filter((m) => m.user.bot).size+" bots)");
+        var newGuild = new RichEmbed().setAuthor(guild.name, guild.iconURL).setColor("#32CD32").setDescription("J'ai rejoint **"+guild.name+"**, avec **"+guild.members.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.filter((m) => m.user.bot).size+" bots)");
         client.channels.get(client.config.logs).send(newGuild);
     })
     .on("guildDelete", (guild) => {
-        var oldGuild = new Discord.RichEmbed().setAuthor(guild.name, guild.iconURL).setColor("#B22222").setDescription("Quelqu'un m'a expulsé de **"+guild.name+"** avec **"+guild.members.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.filter((m) => m.user.bot).size+" bots)");
+        var oldGuild = new RichEmbed().setAuthor(guild.name, guild.iconURL).setColor("#B22222").setDescription("Quelqu'un m'a expulsé de **"+guild.name+"** avec **"+guild.members.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.filter((m) => m.user.bot).size+" bots)");
         client.channels.get(client.config.logs).send(oldGuild);
     });
 
