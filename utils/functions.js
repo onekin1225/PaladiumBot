@@ -18,7 +18,7 @@ module.exports = {
                     now:0
                 };
             }
-            var status = "【🛡】Statut : "+(body.online ? "En ligne" : "Hors ligne");
+            var status = "【🛡】Statut : "+(body.online ? "En ligne" : "Maintenance");
             var players = "【👥】Joueurs : "+body.players.now;
             client.guilds.forEach((guild) => {
                 if(guildID && guild.id !== guildID){
