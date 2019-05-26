@@ -8,7 +8,7 @@ module.exports = class {
         // Loads discord lib
         var Discord = require("discord.js");
 
-        var logEmbed = new Discord.RichEmbed().setAuthor(guild.name, guild.iconURL).setDescription("Merci au staff de "+guild.name+" de m'avoir ajouté !");
+        var logEmbed = new Discord.RichEmbed().setAuthor(guild.name, guild.iconURL).setColor("#32CD32").setDescription("J'ai rejoint **"+guild.name+"**, avec **"+guild.members.filter((m) => !m.user.bot).size+"** membres (et "+guild.members.filter((m) => m.user.bot).size+" bots)");
         var logs = this.client.channels.get(this.client.config.logs);
         if(logs){
             logs.send(logEmbed);
