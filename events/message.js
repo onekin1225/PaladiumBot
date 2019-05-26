@@ -26,6 +26,11 @@ module.exports = class {
             return message.channel.send("Bonjour, "+message.author+" ! Obtiens la liste des commandes grâce à `"+this.client.config.prefix+"help` !");
         }
 
+        // If the message does not start with the prefix, cancel
+        if(!message.content.startsWith(this.client.config.prefix)){
+            return;
+        }
+
         // If the message content is "/pay @Androz 10", the args will be : [ "pay", "@Androz", "10" ]
         const args = message.content.slice(this.client.config.prefix.length).trim().split(/ +/g);
         // The command will be : "pay" and the args : [ "@Androz", "10" ]
