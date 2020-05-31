@@ -7,7 +7,7 @@ path = require("path"),
 readdir = promisify(fs.readdir),
 Quickdb = require("quick.db");
 Quickdb.init("./data/palabot.sqlite");
-
+awa
 const config = require("./data/config.js"),
 logger = require("./utils/logger.js"),
 functions = require("./utils/functions.js");
